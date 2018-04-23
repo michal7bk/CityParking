@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 
 public class PriceList {
 
-
-
     public static double getPrice(Customer customer,CurrenciesAllowed currency ){
         double price = 0 ;
         LocalDateTime currentDate = LocalDateTime.now();

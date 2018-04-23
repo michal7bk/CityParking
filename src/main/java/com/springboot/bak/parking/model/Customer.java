@@ -1,7 +1,5 @@
 package com.springboot.bak.parking.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 
@@ -9,10 +7,10 @@ public class Customer {
     private long id;
     private String vehicleNumber;
     private LocalDateTime registrationDate;
-
-    // 1 - > Vip , 0 -> Regular
+    // 1 - > vip , 0 -> Regular
     private boolean vip;
-//    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    //1 - > vehicle in the parking, 0 -> vehicle outsie
+    private boolean parked =true;
 
     public Customer() {
     }
@@ -21,7 +19,7 @@ public class Customer {
         this.id = id;
         this.vehicleNumber = vehicleNumber;
         this.vip = vip;
-       // this.registrationDate = new Date();
+        this.parked = true;
         }
 
     public long getId() {
@@ -40,10 +38,6 @@ public class Customer {
         this.vehicleNumber = vehicleNumber;
     }
 
-//    public String getRegistrationDate() {
-//        return dateFormat.format(registrationDate);
-//    }
-
 
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
@@ -59,6 +53,14 @@ public class Customer {
 
     public void setVip(boolean vip) {
         this.vip = vip;
+    }
+
+    public boolean isParked() {
+        return parked;
+    }
+
+    public void setParked(boolean parked) {
+        this.parked = parked;
     }
 }
 
