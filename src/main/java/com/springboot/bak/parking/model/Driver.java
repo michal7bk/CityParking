@@ -1,28 +1,24 @@
 package com.springboot.bak.parking.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
-public class Customer {
-    private long id;
+public class Driver {
+
+    private Long id;
     private String vehicleNumber;
     private LocalDateTime registrationDate;
     // 1 - > vip , 0 -> Regular
     private boolean vip;
-    //1 - > vehicle in the parking, 0 -> vehicle outsie
-    private boolean parked =true;
 
-    public Customer() {
-    }
-
-    public Customer(long id, String vehicleNumber, boolean vip) {
-        this.id = id;
+    public Driver(String vehicleNumber, boolean vip) {
         this.vehicleNumber = vehicleNumber;
         this.vip = vip;
-        this.parked = true;
-        }
+    }
+    public Driver(){}
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -34,17 +30,8 @@ public class Customer {
         return vehicleNumber;
     }
 
-    public void setVehicleNumber(String vehicleNumber) {
-        this.vehicleNumber = vehicleNumber;
-    }
-
-
     public LocalDateTime getRegistrationDate() {
         return registrationDate;
-    }
-
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
     }
 
     public boolean isVip() {
@@ -56,11 +43,16 @@ public class Customer {
     }
 
     public boolean isParked() {
-        return parked;
+        return registrationDate != null;
     }
 
-    public void setParked(boolean parked) {
-        this.parked = parked;
+    public void stopParking() {
+        this.registrationDate = null;
     }
+
+    public void startParking(LocalDateTime startDate) {
+        this.registrationDate = startDate;
+    }
+
 }
 
