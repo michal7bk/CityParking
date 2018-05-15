@@ -6,7 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("drivers")
+
+
+
+@RestController
+@RequestMapping("/drivers")
 public class DriverController {
 
     private final DriverRepository driverRepository;
@@ -24,26 +28,28 @@ public class DriverController {
     }
 
     @GetMapping("/{id}")
-    //TODO return 404 if not found
-    public Driver getOneCustomer(@PathVariable("id") long customerId) {
+    public Driver getOneDriver(@PathVariable("id") long customerId) {
+        this.isFilmExists(customerId);
         return driverService.findById(customerId);
     }
 
 
     @GetMapping("/{id}/check")
-    public Money checkCustomerBill(@PathVariable("id") long customerId) {
+    public Money checkDriverBill(@PathVariable("id") long customerId) {
         return driverService.checkBill(customerId);
     }
 
-    @GetMapping("/{id}/stop/")
+    @GetMapping("/{id}/stop")
     public Money stopParking(@PathVariable("id") long customerId) {
         return driverService.stopParking(customerId);
     }
 
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST,
-            reason = "Request ID not found. ")
-    @ExceptionHandler(IllegalArgumentException.class)
-    public void badIdExceptionHanlder() {
+
+
+    private void isFilmExists(Long id){
+        if(driverService.findById(id) == null){
+            new DriverNotFoundException(id);
+        }
     }
 
 }

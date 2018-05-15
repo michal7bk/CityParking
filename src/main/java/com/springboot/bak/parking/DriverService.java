@@ -23,6 +23,13 @@ class DriverService {
         return driverRepository.save(driver);
     }
 
+    public Money stopParking(long driverId) {
+        Driver driver = findById(driverId);
+        Money bill = checkBill(driver);
+        driver.stopParking();
+        return bill;
+    }
+
     private LocalDateTime now() {
         return LocalDateTime.now(clockProvider.getClock());
     }
@@ -30,7 +37,7 @@ class DriverService {
     public Driver findById(long customerId) {
         Driver driver = driverRepository.findById(customerId);
         if (driver == null) {
-            throw new CustomerNotFoundException();
+            throw new DriverNotFoundException(customerId);
         }
         return driver;
     }
@@ -40,12 +47,7 @@ class DriverService {
         return checkBill(driver);
     }
 
-    public Money stopParking(long driverId) {
-        Driver driver = findById(driverId);
-        Money bill = checkBill(driver);
-        driver.stopParking();
-        return bill;
-    }
+
 
     private Money checkBill(Driver driver) {
         double price = 0 ;
