@@ -1,4 +1,4 @@
-IN PROGRESS
+
 
 # CityParking
 A web application for managing the city parking spaces.
@@ -10,9 +10,9 @@ Spring boot
 Driver model : Id, vehicleNumber, registrationDate, vip.
 
 Get:
-/drivers/{id} -> Get driver info by Id
-/drivers/{id}/check  -> Check how much driver have to pay at the moment
-/drivers/{id}/stop -> Stop parking and pay
+/drivers/{id} -> Get driver info by Id <br/>
+/drivers/{id}/check  -> Check how much driver have to pay at the moment<br/>
+/drivers/{id}/stop -> Stop parking and pay<br/>
 
 
 Post:
@@ -21,16 +21,16 @@ Post:
 
 Sample request: 
 
-curl -i -H "Content-Type: application/json" -X POST -d'{
-"vehicleNumber": "WW12345",
-"vip" : "false"
- }' localhost:8080/drivers
+curl -i -H "Content-Type: application/json" -X POST -d'{ <br/>
+"vehicleNumber": "WW12345", <br/>
+"vip" : "false" <br/>
+ }' localhost:8080/drivers <br/>
  
  Sample response:
  
- {"id":1,"vehicleNumber":"WW12345",
- "registrationDate":"2018-05-15T11:54:05.3599625",
- "vip":false,
- "parked":true}  
+ {"id":1,"vehicleNumber":"WW12345", <br/>
+ "registrationDate":"2018-05-15T11:54:05.3599625", <br/>
+ "vip":false, <br/>
+ "parked":true}  <br/>
  
  
